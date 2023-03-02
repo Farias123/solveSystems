@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import gauss_functions
 
 #Vitor Farias, 24/02/2023
@@ -10,8 +9,6 @@ print("O x e o y devem ser escritos em letra minúscula.")
 print("Números negativos coeficientes de y devem ser escritos na notação: Ax + -By = C")
 print("A, B e C são escalares e você deve usar o separador decimal como ponto:")
 
-def sum(num):
-    return num
 
 class Matriz:
 #Essa classe vai usar a matriz que criarmos com os termos obtidos da equacao
@@ -71,11 +68,11 @@ class Matriz:
 eq1 = input("Escreva a equacao numero 1: ")
 eq2 = input("Escreva a equacao numero 2: ")
 
-coefX1 = gauss_functions.obterCoefX(eq1)
+coefX1 = gauss_functions.obterCoefX(eq1,gauss_functions.valorDeX)
 coefY1 = gauss_functions.obterCoefY(eq1)
 termoIndep1 = gauss_functions.obterIndep(eq1)
 
-coefX2 = gauss_functions.obterCoefX(eq2)
+coefX2 = gauss_functions.obterCoefX(eq2,gauss_functions.valorDeX)
 coefY2 = gauss_functions.obterCoefY(eq2)
 termoIndep2 = gauss_functions.obterIndep(eq2)
 

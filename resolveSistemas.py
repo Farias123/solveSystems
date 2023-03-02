@@ -4,6 +4,7 @@ import gauss_functions
 #Vitor Farias, 24/02/2023
 #Esse programa resolve um sistema linear de equacao de duas incognitas, com duas equacoes, utilizando
 #o metodo de Gauss Jordan para a resolucao de matrizes(escalonamento).
+
 print("Esse programa vai resolver seu sistema linear usando o método de Gauss Jordan.")
 print("Escreva as equações na notação: Ax + By = C")
 print("O x e o y devem ser escritos em letra minúscula.")

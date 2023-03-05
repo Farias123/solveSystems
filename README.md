@@ -16,8 +16,10 @@ This class will use the array that will be created with the terms obtained from 
 
 ## scale method
 This method is for scaling 2X3 arrays, where its representation would be:
-[A B C], where the system's in this format: {Ax + By = C
-[D E F]									    {Dx + Ey = F
+
+[A B C] <==> {Ax + By = C
+
+[D E F] <==> {Dx + Ey = F
 
 The first step to scale the array is to zero the first term of the second line, subtracting on second line, the first line multiplied by D/A, this way D will be reduced to zero.
 
@@ -41,24 +43,38 @@ The second exception was created for, if on the second equation, the X multiplie
 
 ## Input examples
 Ex1.:
+
 2.0x + -4.0y = 10.0
+
 4.0x + -5.0y = 6.0
 
 Ex2.:
+
 2x + 4y = 12
+
 4x + 5y = 6
 
 ## Output examples
 Ex1.:
+
 The X value is: -4.333333333333334 
+
 And the Y value is: -4.666666666666667
+
 The scaled array is:
- [1, 0, -4.333333333333334] 
- [0, 1, -4.666666666666667]
+
+[1, 0, -4.333333333333334] 
+
+[0, 1, -4.666666666666667]
 
 Ex2.:
+
 The X value is: -6.0 
+
 And the Y value is: 6.0
+
 The scaled array is:
- [1, 0, -6.0] 
- [0, 1, 6.0]
+
+[1, 0, -6.0] 
+
+[0, 1, 6.0]

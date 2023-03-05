@@ -1,19 +1,3 @@
-def getCoefX(eq):
-#Essa funcao vai percorrer os caracteres da equacao e pegar um por um ate que chegue no x, ela
-#entao retornara o valor do coeficiente multiplicador de X. 
-    return 
-
-
-def getCoefY(eq):
-#Essa funcao vai percorrer os caracteres da equacao depois do sinal de soma e pegar um por um
-#ate que chegue no y, ela entao retornara o valor do coeficiente multiplicador de Y. 
-    return 
-
-def getIndep(eq):
-#Essa funcao vai percorrer os caracteres da equacao depois do sinal de igualdade e pegar um por um
-#ate que chegue ao fim da equacao, ela entao retornara o valor do termo independente. 
-    return 
-
 def getCoef(eq,definer):
     if definer == "X":
         coefX = ' '

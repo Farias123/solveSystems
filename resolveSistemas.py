@@ -3,31 +3,31 @@ import gauss_functions
 #Vitor Farias, 24/02/2023
 #Esse programa resolve um sistema linear de equacao de duas incognitas, com duas equacoes, utilizando
 #o metodo de Gauss Jordan para a resolucao de matrizes(escalonamento).
-print("Esse programa vai resolver seu sistema linear usando o método de Gauss Jordan.")
-print("Escreva as equações na notação: Ax + By = C")
-print("O x e o y devem ser escritos em letra minúscula.")
-print("Números negativos coeficientes de y devem ser escritos na notação: Ax + -By = C")
-print("A, B e C são escalares e você deve usar o separador decimal como ponto:")
+print("This program will solve your linear system using the Gauss Jordan method.")
+print("Write the equations in this notation: Ax + By = C")
+print("x and y must be written in lower case.")
+print("Negative numbers that are coeficient of y must be written in this notation: Ax + -By = C")
+print("A, B and C are scalars and you must use the decimal separator as the dot(.):")
 
 
-class Matriz:
+class Array:
 #Essa classe vai usar a matriz que criarmos com os termos obtidos da equacao
 #(escalares e termos independentes), para calcular o valor de X e Y usando metodos.
-    def __init__(self,novaMatriz):
-        self.A = novaMatriz[0][0]
-        self.B = novaMatriz[0][1]
-        self.C = novaMatriz[0][2]
-        self.D = novaMatriz[1][0]
-        self.E = novaMatriz[1][1]
-        self.F = novaMatriz[1][2]
-        self.escalonado = False
+    def __init__(self,newArray):
+        self.A = newArray[0][0]
+        self.B = newArray[0][1]
+        self.C = newArray[0][2]
+        self.D = newArray[1][0]
+        self.E = newArray[1][1]
+        self.F = newArray[1][2]
+        self.scaled = False
 
-    def escalonar(self):
+    def scale(self):
 
 #Esse metodo serve para escalonar uma matriz 2X3, em que sua representacao seria:
 #[A B C], e se essa matriz representar um sistema:[A B |C], o sistema esta no formato: {Ax + By = C
 #[D E F]                                          [D E |F]                             {Dx + Ey = F
-        if self.escalonado == False:
+        if self.scaled == False:
 
 #O primeiro passo para escalonar a matriz é zerar o primeiro termo da segunda linha, subtraindo na
 #segunda linha, a multiplicação da primeira linha com D/A, assim o D se reduz a zero:
@@ -54,52 +54,52 @@ class Matriz:
             self.A = 1; #Porque A/A = 1 
             
 #Pronto, nossa matriz ja esta escalonada. 
-            self.escalonado = True    
+            self.scaled = True    
         return self
     
-    def obterValorX(self):
-        Matriz.escalonar(self)
+    def getXValue(self):
+        Array.scale(self)
         return self.C
     
-    def obterValorY(self):
-        Matriz.escalonar(self)
+    def getYValue(self):
+        Array.scale(self)
         return self.F
 
-eq1 = input("Escreva a equacao numero 1: ")
-eq2 = input("Escreva a equacao numero 2: ")
+eq1 = input("Write the first equation: ")
+eq2 = input("Write the second equation: ")
 
-coefX1 = gauss_functions.obterCoefX(eq1,gauss_functions.valorDeX)
-coefY1 = gauss_functions.obterCoefY(eq1)
-termoIndep1 = gauss_functions.obterIndep(eq1)
+coefX1 = gauss_functions.getCoef(eq1,"X")
+coefY1 = gauss_functions.getCoef(eq1,"Y")
+termIndep1 = gauss_functions.getCoef(eq1,"Indep")
 
-coefX2 = gauss_functions.obterCoefX(eq2,gauss_functions.valorDeX)
-coefY2 = gauss_functions.obterCoefY(eq2)
-termoIndep2 = gauss_functions.obterIndep(eq2)
+coefX2 = gauss_functions.getCoef(eq2,"X")
+coefY2 = gauss_functions.getCoef(eq2,"Y")
+termIndep2 = gauss_functions.getCoef(eq2,"Indep")
 
-minhaMatriz = Matriz([[coefX1, coefY1, termoIndep1],
-                      [coefX2, coefY2, termoIndep2]])
+myArray = Array([[coefX1, coefY1, termIndep1],
+                      [coefX2, coefY2, termIndep2]])
 
 try:
-    print("O valor de X é:",minhaMatriz.obterValorX(),"\nE o valor de Y é:",minhaMatriz.obterValorY())
+    print("The X value is:",myArray.getXValue(),"\nAnd the Y value is:",myArray.getYValue())
 
-    matrizEscalonada = [[minhaMatriz.A, minhaMatriz.B, minhaMatriz.C],
-                        [minhaMatriz.D, minhaMatriz.E, minhaMatriz.F]]
+    scaledArray = [[myArray.A, myArray.B, myArray.C],
+                   [myArray.D, myArray.E, myArray.F]]
                
-    print("A matriz escalonada fica assim:\n",matrizEscalonada[0],"\n",matrizEscalonada[1])
+    print("The scaled array is:\n",scaledArray[0],"\n",scaledArray[1])
 
 except:
 #Essa excecao foi criada para quando acontecer um erro de divisao por zero no escalonamento da matriz,
 #que significa que a proporcao entre os multiplicadores de X e os multiplicadores de Y é a mesma.
 #Se isso acontecer, significa que o sistema não é possivel e determinado.
     try:
-        if coefX1/coefX2 == termoIndep1/termoIndep2:
-            print("Não é possível encontrar um único resultado para esse sistema, pois ele é um SPI.")
+        if coefX1/coefX2 == termIndep1/termIndep2:
+            print("It's not possible to find a single result to this system, because it's indeterminate.")
         else:
-            print("Não é possível resolver esse sistema, pois ele é um SI.")
+            print("It's not possible to solve this system, it's an impossible system.")
     except:
 #Essa segunda excecao foi criada para, se na segunda equacao o multiplicador de X ou o termo 
 #independente forem iguais a zero, o erro de divisao por zero nao acontecer.
-        if termoIndep2 == 0:
-            print("Não é possível encontrar um único resultado para esse sistema, pois ele é um SPI.")
+        if termIndep2 == 0:
+            print("It's not possible to find a single result to this system, because it's indeterminate.")
         else:
-            print("Não é possível resolver esse sistema, pois ele é um SI.")
+            print("It's not possible to solve this system, it's an impossible system.")
